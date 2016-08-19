@@ -38,7 +38,10 @@ const barrels:string[] = [
     // App specific barrels.
     'app',
     'app/shared',
-    /** @cli-barrel */
+    'app/signup',
+  'app/signin',
+  'app/homepage',
+  /** @cli-barrel */
 ];
 
 const cliSystemConfigPackages:any = {};
