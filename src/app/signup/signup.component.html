@@ -1,0 +1,44 @@
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui violet image header">
+            <div class="content">
+                Create your account
+            </div>
+        </h2>
+        <form class="ui large form" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="email" name="email" placeholder="E-mail" formControlName="email" id="email" #email>
+                        <!--<span *ngIf="!email.pristine">Invalid mail address</span>-->
+                    </div>
+                </div>
+                <div class="field" *ngIf="!signupForm.controls.email.pristine && signupForm.controls.email.errors != null && signupForm.controls.email.errors['noEmail']">
+                    <div class="ui pointing red basic label">
+                        Please enter a value
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password" formControlName="password" id="password">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="confirmPassword" placeholder="Password again" formControlName="confirmPassword" id="confirmPassword" #confirmPassword (input)="check()">
+                    </div>
+                </div>
+                <div class="field" *ngIf="!signupForm.controls.confirmPassword.pristine && signupForm.controls.confirmPassword.value !== signupForm.controls.password.value">
+                <!--<div class="field" *ngIf="!signupForm.controls.confirmPassword.pristine && signupForm.controls.confirmPassword.errors != null && signupForm.controls.confirmPassword.errors['passwordsNotMatch']">-->
+                    <div class="ui pointing red basic label">
+                        Passwords have to be the same
+                    </div>
+                </div>
+                <button class="ui fluid large violet submit button" type="submit" [disabled]="!passwordsEqual">Sign up</button>
+            </div>
+        </form>
+    </div>
+</div>
