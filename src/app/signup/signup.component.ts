@@ -10,9 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
 export class SignupComponent implements OnInit {
 
     signupForm: FormGroup;
-    passwordsEqual: boolean;
-    // error = false;
-    // errorMessage = '';
+    passwordsEqual: boolean = false;
 
     constructor(private fb: FormBuilder) { }
 
@@ -22,22 +20,12 @@ export class SignupComponent implements OnInit {
                 Validators.required,
                 this.isEmail
             ])],
-            password: ['', Validators.compose([
-                Validators.required,
-                this.isEqualPassword.bind(this)
-            ])],
-            confirmPassword: ['', Validators.compose([
-                Validators.required,
-                this.isEqualConfirmPassword.bind(this)
-            ])],
+            password: ['', Validators.required],
+            confirmPassword: ['', Validators.required]
         });
 
-        this.signupForm.valueChanges.subscribe(data => this.passwordsEqual = data.password === data.confirmPassword);
-        console.log(this.passwordsEqual);
-    }
-
-    check() {
-        console.log(this.signupForm);
+        this.signupForm.valueChanges
+            .subscribe(data => this.passwordsEqual = data.password !== '' && data.password === data.confirmPassword);
     }
 
     isEmail(control: FormControl): {[s: string]: boolean} {
@@ -45,25 +33,4 @@ export class SignupComponent implements OnInit {
             return {noEmail: true};
         }
     }
-
-    isEqualPassword(control: FormControl): {[s: string]: boolean} {
-        if (!this.signupForm) {
-            return {passwordsNotMatch: true};
-        }
-
-        if (control.value !== this.signupForm.controls['confirmPassword'].value) {
-            return {passwordsNotMatch: true};
-        }
-    }
-
-    isEqualConfirmPassword(control: FormControl): {[s: string]: boolean} {
-        if (!this.signupForm) {
-            return {passwordsNotMatch: true};
-        }
-
-        if (control.value !== this.signupForm.controls['password'].value) {
-            return {passwordsNotMatch: true};
-        }
-    }
-
 }
