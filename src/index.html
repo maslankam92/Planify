@@ -33,6 +33,16 @@
                 System.import('main');
             }).catch(console.error.bind(console));
         </script>
-
+        <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDW3v0ddX2xSeHm-Zg3mWFqFzm8teUQlZ8",
+                authDomain: "planifly.firebaseapp.com",
+                databaseURL: "https://planifly.firebaseio.com",
+                storageBucket: "",
+            };
+            firebase.initializeApp(config);
+        </script>
     </body>
 </html>
