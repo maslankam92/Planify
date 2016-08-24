@@ -1,3 +1,26 @@
-<p>
-  signin works!
-</p>
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui violet image header">
+            <div class="content">
+                Login to your account
+            </div>
+        </h2>
+        <form class="ui large form" [formGroup]="signinForm" (ngSubmit)="onSignin()">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="email" name="email" placeholder="E-mail" formControlName="email" id="email" #email>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password" formControlName="password" id="password">
+                    </div>
+                </div>
+                <button class="ui fluid large violet submit button" type="submit" [disabled]="!signinForm.valid">Sign in</button>
+            </div>
+        </form>
+    </div>
+</div>
