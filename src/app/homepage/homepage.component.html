@@ -43,6 +43,9 @@
                     <a routerLink="/signin" class="ui inverted button">Log in</a>
                     <a routerLink="/signup" class="ui inverted button">Sign Up</a>
                 </div>
+                <div class="right item" *ngIf="isAuth()">
+                    <a class="ui inverted button" (click)="onLogout()">Logout</a>
+                </div>
             </div>
         </div>
 

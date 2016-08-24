@@ -15,5 +15,9 @@ export class HomepageComponent  {
       return this.authService.isAuthenticated();
   }
 
+  onLogout() {
+      this.authService.signOut();
+  }
+
 
 }
