@@ -39,7 +39,7 @@
                 <a class="item">Work</a>
                 <a class="item">Company</a>
                 <a class="item">Careers</a>
-                <div class="right item">
+                <div class="right item" *ngIf="!isAuth()">
                     <a routerLink="/signin" class="ui inverted button">Log in</a>
                     <a routerLink="/signup" class="ui inverted button">Sign Up</a>
                 </div>
