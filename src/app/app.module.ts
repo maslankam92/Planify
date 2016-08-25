@@ -8,6 +8,7 @@ import { routing } from "./app.routing";
 import { SigninComponent } from "./signin";
 import { HomepageComponent } from "./homepage";
 import { AuthService } from "./shared/auth.service";
+import { AuthGuard } from "./shared/auth.guard";
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { AuthService } from "./shared/auth.service";
         HomepageComponent
     ],
     providers: [
-        AuthService
+        AuthService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })
