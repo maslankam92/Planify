@@ -3,9 +3,12 @@
 }
 
 .ui.inverted.segment.jumbotron {
-  background: linear-gradient(rgba(52,199,20,.2), transparent),
-  url('../assets/images/bg.jpg') no-repeat center bottom fixed;
+  background: linear-gradient(rgba(52,199,20,.2), transparent);
+  background-image: url('../assets/images/bg-1.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
 }
 
 .masthead.segment {
