@@ -10,11 +10,13 @@ import { HomepageComponent } from "./homepage";
 import { AuthService } from "./shared/auth.service";
 import { AuthGuard } from "./shared/auth.guard";
 import { MainMapComponent } from "./main-map/main-map.component";
+import { NgSemanticModule } from "ng-semantic/ng-semantic";
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
+        NgSemanticModule,
         routing
     ],
     declarations: [
