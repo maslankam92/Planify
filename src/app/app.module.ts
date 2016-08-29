@@ -9,6 +9,7 @@ import { SigninComponent } from "./signin";
 import { HomepageComponent } from "./homepage";
 import { AuthService } from "./shared/auth.service";
 import { AuthGuard } from "./shared/auth.guard";
+import { MainMapComponent } from "./main-map/main-map.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { AuthGuard } from "./shared/auth.guard";
         AppComponent,
         SignupComponent,
         SigninComponent,
-        HomepageComponent
+        HomepageComponent,
+        MainMapComponent
     ],
     providers: [
         AuthService,
