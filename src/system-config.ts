@@ -42,7 +42,11 @@ const barrels:string[] = [
     'app/signin',
     'app/homepage',
     'app/main-map',
-    /** @cli-barrel */
+    'app/navbar',
+    'app/main-map/navbar',
+    'app/main-map/map-container',
+    'app/main-map/details-container',
+  /** @cli-barrel */
 ];
 
 const cliSystemConfigPackages:any = {};

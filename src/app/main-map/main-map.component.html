@@ -20,35 +20,6 @@
     <!--</div>-->
 <!--</div>-->
 
-<div class="main ui container">
-    <sm-menu title="Angular2" class="inverted violet fixed">
-        <a sm-item href="#/elements/menu" *ngFor="let item of items" [icon]="item?.icon">{{item?.title}}</a>
+<pf-navbar></pf-navbar>
 
-        <sm-menu class="menu right secondary icon padding" *ngIf="!isAuth()">
-            <a sm-item routerLink="/signin">Log in</a>
-            <a sm-item routerLink="/signup">Sign up</a>
-        </sm-menu>
 
-        <sm-menu class="menu right secondary icon" *ngIf="isAuth()">
-            <a sm-item href="#/elements/menu"
-               image="http://semantic-ui.com/images/avatar/small/stevie.jpg">Elliot Fu</a>
-            <a sm-item (click)="onLogout()">Logout</a>
-
-            <a sm-item icon="sidebar big" (click)="menuSidebar.show({transition: 'overlay'})"></a>
-            <sm-sidebar class="right vertical inverted sidebar labeled menu violet huge" #menuSidebar>
-                <a class="item">
-                    <i class="home icon"></i>
-                    Home
-                </a>
-                <a class="item">
-                    <i class="block layout icon"></i>
-                    Topics
-                </a>
-                <a class="item">
-                    <i class="smile icon"></i>
-                    Friends
-                </a>
-            </sm-sidebar>
-        </sm-menu>
-    </sm-menu>
-</div>

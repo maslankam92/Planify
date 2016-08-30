@@ -11,6 +11,7 @@ import { AuthService } from "./shared/auth.service";
 import { AuthGuard } from "./shared/auth.guard";
 import { MainMapComponent } from "./main-map/main-map.component";
 import { NgSemanticModule } from "ng-semantic/ng-semantic";
+import { NavbarComponent } from "./main-map/navbar";
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { NgSemanticModule } from "ng-semantic/ng-semantic";
         SignupComponent,
         SigninComponent,
         HomepageComponent,
-        MainMapComponent
+        MainMapComponent,
+        NavbarComponent
     ],
     providers: [
         AuthService,
