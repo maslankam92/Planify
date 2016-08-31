@@ -9,12 +9,14 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map:any = {
-    'ng-semantic': 'vendor/ng-semantic'
+    'ng-semantic': 'vendor/ng-semantic',
+    'angular2-google-maps': 'vendor/angular2-google-maps'
 };
 
 /** User packages configuration. */
 const packages:any = {
-    'ng-semantic': {main: 'ng-semantic.js', defaultExtension: 'js'}
+    'ng-semantic': { main: 'ng-semantic.js', defaultExtension: 'js' },
+    'angular2-google-maps/core': { main: 'index.js', defaultExtension: 'js' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
