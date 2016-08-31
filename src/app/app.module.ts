@@ -16,6 +16,7 @@ import { MainMapComponent } from "./main-map/main-map.component";
 import { NavbarComponent } from "./main-map/navbar";
 import { MapContainerComponent } from "./main-map/map-container";
 import { DetailsContainerComponent } from "./main-map/details-container";
+import { provideLazyMapsAPILoaderConfig } from "angular2-google-maps/core/services/maps-api-loader/lazy-maps-api-loader";
 
 @NgModule({
     imports: [
@@ -33,12 +34,13 @@ import { DetailsContainerComponent } from "./main-map/details-container";
         NavbarComponent,
         MapContainerComponent,
         DetailsContainerComponent,
-        GOOGLE_MAPS_DIRECTIVES
+        // GOOGLE_MAPS_DIRECTIVES
     ],
     providers: [
         AuthService,
         AuthGuard,
-        GOOGLE_MAPS_PROVIDERS,
+        // GOOGLE_MAPS_PROVIDERS,
+        // provideLazyMapsAPILoaderConfig({apiKey: 'AIzaSyDW3v0ddX2xSeHm-Zg3mWFqFzm8teUQlZ8', libraries: ['places']})
     ],
     bootstrap: [AppComponent]
 })
