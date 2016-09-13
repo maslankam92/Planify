@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../shared/auth.service";
 
 @Component({
   moduleId: module.id,
@@ -6,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'details-container.component.html',
   styleUrls: ['details-container.component.css']
 })
-export class DetailsContainerComponent implements OnInit {
+export class DetailsContainerComponent  {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit() {
+  isAuth() {
+      return this.authService.isAuthenticated();
   }
+
 
 }

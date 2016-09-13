@@ -1,3 +1,8 @@
 <div class="ui segment">
-    details
+    <div *ngIf="!isAuth()">
+        <div class="ui violet message">To add trip, please log in.</div>
+        <button routerLink="/signin" class="ui button">
+            Login
+        </button>
+    </div>
 </div>
