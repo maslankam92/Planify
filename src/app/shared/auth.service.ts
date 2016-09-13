@@ -10,11 +10,9 @@ export class AuthService {
         });
     }
 
-    signinUser(user: UserLogin) {
-        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-            .catch(function(error) {
-                console.log(error);
-        });
+    signinUser(user: UserLogin): Promise<any> {
+        return firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+            .then(data => data)
     }
 
     signOut() {

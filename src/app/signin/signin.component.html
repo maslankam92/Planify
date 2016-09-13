@@ -22,5 +22,18 @@
                 <button class="ui fluid large violet submit button" type="submit" [disabled]="!signinForm.valid">Sign in</button>
             </div>
         </form>
+
+        <div *ngIf="success" class="ui message green">
+            Hi <strong>{{success.email}}</strong>!
+            <br>
+            You will be redirected in a while.
+            <br>
+            <div class="ui active centered inline loader"></div>
+        </div>
+        <div *ngIf="error" class="ui message red">
+            {{error?.message}}
+        </div>
+
+
     </div>
 </div>
