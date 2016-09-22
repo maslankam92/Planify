@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSemanticModule } from "ng-semantic/ng-semantic";
-import { GOOGLE_MAPS_PROVIDERS } from "angular2-google-maps/core/index";
-import { GOOGLE_MAPS_DIRECTIVES } from "angular2-google-maps/core/directives-const";
+// import { GOOGLE_MAPS_PROVIDERS } from "angular2-google-maps/core/index";
+// import { GOOGLE_MAPS_DIRECTIVES } from "angular2-google-maps/core/directives-const";
 
 import { AppComponent } from "./app.component";
 import { SignupComponent } from "./signup";
@@ -16,7 +16,7 @@ import { MainMapComponent } from "./main-map/main-map.component";
 import { NavbarComponent } from "./main-map/navbar";
 import { MapContainerComponent } from "./main-map/map-container";
 import { DetailsContainerComponent } from "./main-map/details-container";
-import { provideLazyMapsAPILoaderConfig } from "angular2-google-maps/core/services/maps-api-loader/lazy-maps-api-loader";
+// import { provideLazyMapsAPILoaderConfig } from "angular2-google-maps/core/services/maps-api-loader/lazy-maps-api-loader";
 import { GoogleMapService } from "./shared/google-map.service";
 
 @NgModule({

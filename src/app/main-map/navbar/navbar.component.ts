@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { AuthService } from "../../shared/auth.service";
 
 @Component({
-    moduleId: module.id,
     selector: 'pf-navbar',
     templateUrl: 'navbar.component.html',
-    styleUrls: ['navbar.component.css']
+    styleUrls: ['navbar.component.scss']
 })
 export class NavbarComponent  {
 

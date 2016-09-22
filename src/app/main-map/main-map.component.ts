@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'pf-main-map',
   templateUrl: 'main-map.component.html',
-  styleUrls: ['main-map.component.css']
+  styleUrls: ['main-map.component.scss']
 })
 export class MainMapComponent  {
 

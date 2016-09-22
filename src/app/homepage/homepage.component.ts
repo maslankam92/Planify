@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SafeStyle, DomSanitizationService } from '@angular/platform-browser';
+// import { SafeStyle, DomSanitizationService } from '@angular/platform-browser';
 import { AuthService } from "../shared/auth.service";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'pf-homepage',
   templateUrl: 'homepage.component.html',
-  styleUrls: ['homepage.component.css']
+  styleUrls: ['homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
 
@@ -17,7 +16,7 @@ export class HomepageComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit():any {
-      this.bg = this.getBg();
+      // this.bg = this.getBg();
   }
 
   isAuth() {
@@ -28,8 +27,8 @@ export class HomepageComponent implements OnInit {
       this.authService.signOut();
   }
 
-  getBg() {
-    let random = Math.floor((Math.random() * this.images.length) + 1);
-    return "url('../assets/images/bg-" + random + ".jpg')";
-  }
+  // getBg() {
+  //   let random = Math.floor((Math.random() * this.images.length) + 1);
+  //   return "url('../assets/images/bg-" + random + ".jpg')";
+  // }
 }

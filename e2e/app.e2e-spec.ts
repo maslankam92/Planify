@@ -1,10 +1,10 @@
-import { PlanifyPage } from './app.po';
+import { PlaniflyPage } from './app.po';
 
-describe('planify App', function() {
-  let page: PlanifyPage;
+describe('planifly App', function() {
+  let page: PlaniflyPage;
 
   beforeEach(() => {
-    page = new PlanifyPage();
+    page = new PlaniflyPage();
   });
 
   it('should display message saying app works', () => {

@@ -1,4 +1,6 @@
-export class PlanifyPage {
+import { browser, element, by } from 'protractor/globals';
+
+export class PlaniflyPage {
   navigateTo() {
     return browser.get('/');
   }

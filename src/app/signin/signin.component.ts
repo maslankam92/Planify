@@ -5,10 +5,9 @@ import { Router } from "@angular/router";
 import { AuthService } from "../shared/auth.service";
 
 @Component({
-    moduleId: module.id,
     selector: 'pf-signin',
     templateUrl: 'signin.component.html',
-    styleUrls: ['signin.component.css']
+    styleUrls: ['signin.component.scss']
 })
 export class SigninComponent implements OnInit {
 
