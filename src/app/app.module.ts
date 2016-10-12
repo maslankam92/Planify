@@ -18,13 +18,24 @@ import { MapContainerComponent } from "./main-map/map-container";
 import { DetailsContainerComponent } from "./main-map/details-container";
 // import { provideLazyMapsAPILoaderConfig } from "angular2-google-maps/core/services/maps-api-loader/lazy-maps-api-loader";
 import { GoogleMapService } from "./shared/google-map.service";
+import {AngularFireModule, AngularFire} from "angularfire2";
+
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDW3v0ddX2xSeHm-Zg3mWFqFzm8teUQlZ8",
+    authDomain: "planifly.firebaseapp.com",
+    databaseURL: "https://planifly.firebaseio.com",
+    storageBucket: "",
+};
+
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         NgSemanticModule,
-        routing
+        routing,
+        AngularFireModule.initializeApp(firebaseConfig)
     ],
     declarations: [
         AppComponent,
@@ -40,7 +51,8 @@ import { GoogleMapService } from "./shared/google-map.service";
     providers: [
         AuthService,
         AuthGuard,
-        GoogleMapService
+        GoogleMapService,
+        AngularFire
         // GOOGLE_MAPS_PROVIDERS,
         // provideLazyMapsAPILoaderConfig({apiKey: 'AIzaSyDW3v0ddX2xSeHm-Zg3mWFqFzm8teUQlZ8', libraries: ['places']})
     ],

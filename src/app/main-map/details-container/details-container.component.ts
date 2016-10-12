@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../shared/auth.service";
+import {AngularFire, FirebaseListObservable} from "angularfire2";
 
 @Component({
-  selector: 'pf-details-container',
-  templateUrl: 'details-container.component.html',
-  styleUrls: ['details-container.component.scss']
+    selector: 'pf-details-container',
+    templateUrl: 'details-container.component.html',
+    styleUrls: ['details-container.component.scss']
 })
-export class DetailsContainerComponent  {
+export class DetailsContainerComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+    items: FirebaseListObservable<any[]>;
 
-  isAuth() {
-      return this.authService.isAuthenticated();
-  }
+    constructor(private authService: AuthService, private af: AngularFire) { }
+
+    isAuth() {
+        return this.authService.isAuthenticated();
+    }
 
 
+    ngOnInit(): void {
+
+        this.items = this.af.database.list('trips');
+        console.log(this.items);
+    }
 }
