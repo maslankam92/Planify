@@ -1,11 +1,30 @@
+import { Injectable } from "@angular/core";
+import { AngularFire, FirebaseAuthState } from "angularfire2";
+
 import { UserLogin } from "./user-login.interface";
 
-declare var firebase: any;
-
+@Injectable()
 export class AuthService {
-    signupUser(user: UserLogin): Promise<any> {
-        return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .catch(this.handleError);
+
+    constructor(private af: AngularFire) {}
+
+    /**
+     * @param {UserLogin} user Data provided by the user in order to create an account.
+     * Creates a new user account in the firebase.
+     * @returns {firebase.Promise<FirebaseAuthState>}
+     * */
+
+    public signupUser(user: UserLogin): firebase.Promise<FirebaseAuthState> {
+        return this.af.auth.createUser({email : user.email, password: user.password});
+    }
+
+    /**
+     * Creates a new user account in firebase database in '/users' entity.
+     * @param {object} user Data about the user account.
+     * @returns {firebase.database.ThenableReference}
+     * */
+    public saveNewUserInDatabase(user): firebase.database.ThenableReference {
+        return firebase.database().ref().child("users").push(user);
     }
 
     signinUser(user: UserLogin): Promise<any> {
@@ -27,9 +46,7 @@ export class AuthService {
         }
     }
 
-    saveNewUser(user) {
-        return firebase.database().ref().child("users").push(user);
-    }
+
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error);

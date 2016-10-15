@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
-import { AuthService } from "../shared/auth.service";
 import { Router } from "@angular/router";
 
-declare var firebase: any;
+import { AuthService } from "../shared/auth.service";
 
 @Component({
     selector: 'pf-signup',
@@ -12,12 +11,22 @@ declare var firebase: any;
 })
 export class SignupComponent implements OnInit {
 
-    signupForm: FormGroup;
-    passwordsEqual: boolean = false;
+    private signupForm: FormGroup;
+    private passwordsEqual: boolean = false;
+    private successInfo: any;
+    private errorInfo: any;
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private router:Router) { }
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+        private router:Router
+    ) { }
 
-    ngOnInit():any {
+    /**
+     * Creates a signup form and watches whether
+     * the password and the confirm password are the same.
+     * */
+    ngOnInit():void {
         this.signupForm = this.fb.group({
             email: ['', Validators.compose([
                 Validators.required,
@@ -28,25 +37,58 @@ export class SignupComponent implements OnInit {
         });
 
         this.signupForm.valueChanges
-            .subscribe(data => this.passwordsEqual = data.password !== '' && data.password === data.confirmPassword);
+            .subscribe(data => {
+                this.passwordsEqual = data.password !== '' && data.password === data.confirmPassword;
+            });
     }
 
-    onSignup(): void {
+    /**
+     * Creates the user account in the Firebase and then
+     * saves a user object in the Firebase DB in the '/users' entity.
+     * If catches error, displays message for the user and resets the form.
+     * */
+    public onSignup(): void {
+        this.successInfo = null;
+        this.errorInfo = null;
         this.authService.signupUser(this.signupForm.value)
             .then(response => {
-                var userObject = {
-                    uid: response.uid,
-                    email: response.email
+                let userObject = {
+                    uid: response.auth.uid,
+                    email: response.auth.email
                 };
-                this.authService.saveNewUser(userObject)
-                    .then(setTimeout(() => { this.router.navigate(['/map']) }, 1500))
+                this.errorInfo = null;
+                var successInfo = response.auth;
+
+                this.authService.saveNewUserInDatabase(userObject)
+                    .then(() => {
+                            this.successInfo = successInfo;
+                            setTimeout(() => { this.router.navigate(['/map'])}, 1500);
+                        }
+                    )
             })
-            .catch(err => console.log(err));
+            .catch(error => {
+                this.errorInfo = error;
+                this.signupForm.reset({email: this.signupForm.value.email});
+            });
     }
 
-    isEmail(control: FormControl): {[s: string]: boolean} {
+    /**
+     * Validates an email address provided by the user.
+     * If an email is correct, returns undefined,
+     * otherwise returns an object with 'noEmail' property and value 'true'.
+     * @param {FormControl} control Object containing all information about the email input.
+     * @returns {undefined | object}
+     * */
+    private isEmail(control: FormControl): {[s: string]: boolean} {
         if (!control.value.match(/^\w+@.+?\.[a-zA-Z]{2,3}$/)) {
             return {noEmail: true};
         }
+    }
+
+    /**
+     * Clears error messages box.
+     * */
+    private clearErrorBox():void {
+        this.errorInfo = null;
     }
 }
