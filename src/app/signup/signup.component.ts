@@ -14,19 +14,19 @@ export class SignupComponent implements OnInit {
     private signupForm: FormGroup;
     private passwordsEqual: boolean = false;
     private successInfo: any;
+    private tempSuccessInfo: any;
     private errorInfo: any;
 
-    constructor(
-        private fb: FormBuilder,
-        private authService: AuthService,
-        private router:Router
-    ) { }
+    constructor(private fb: FormBuilder,
+                private authService: AuthService,
+                private router: Router) {
+    }
 
     /**
      * Creates a signup form and watches whether
      * the password and the confirm password are the same.
      * */
-    ngOnInit():void {
+    ngOnInit(): void {
         this.signupForm = this.fb.group({
             email: ['', Validators.compose([
                 Validators.required,
@@ -52,19 +52,20 @@ export class SignupComponent implements OnInit {
         this.errorInfo = null;
         this.authService.signupUser(this.signupForm.value)
             .then(response => {
-                let userObject = {
-                    uid: response.auth.uid,
-                    email: response.auth.email
-                };
-                this.errorInfo = null;
-                var successInfo = response.auth;
-
-                this.authService.saveNewUserInDatabase(userObject)
-                    .then(() => {
-                            this.successInfo = successInfo;
-                            setTimeout(() => { this.router.navigate(['/map'])}, 1500);
-                        }
-                    )
+                return new Promise((resolve) => {
+                    this.errorInfo = null;
+                    this.tempSuccessInfo = response.auth;
+                    resolve(this.authService.saveNewUserInDatabase({
+                        uid: response.auth.uid,
+                        email: response.auth.email
+                    }));
+                })
+            })
+            .then(() => {
+                this.successInfo = this.tempSuccessInfo;
+                setTimeout(() => {
+                    this.router.navigate(['/map'])
+                }, 1500);
             })
             .catch(error => {
                 this.errorInfo = error;
@@ -88,7 +89,7 @@ export class SignupComponent implements OnInit {
     /**
      * Clears error messages box.
      * */
-    private clearErrorBox():void {
+    private clearErrorBox(): void {
         this.errorInfo = null;
     }
 }
