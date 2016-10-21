@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
     }
 
     onLogout() {
-        this.authService.signOut();
+        this.authService.signoutUser();
     }
 
     // getBg() {

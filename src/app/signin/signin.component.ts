@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
-import { AuthService } from "../shared/auth.service";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
     selector: 'pf-signin',
@@ -10,30 +10,49 @@ import { AuthService } from "../shared/auth.service";
     styleUrls: ['signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-
     signinForm: FormGroup;
-    success: any;
-    error: any;
+    successInfo: any;
+    errorInfo: any;
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+    constructor(private fb: FormBuilder,
+                private authService: AuthService,
+                private router: Router) {
+    }
 
-    ngOnInit():any {
+    /**
+     * Creates a signin form.
+     * */
+    ngOnInit(): any {
         this.signinForm = this.fb.group({
             email: ['', Validators.required],
             password: ['', Validators.required]
         })
     }
 
-    onSignin():Promise<any> {
-        return this.authService.signinUser(this.signinForm.value)
-            .then(
-                data => {
-                    this.error = null;
-                    this.success = data;
-                    setTimeout(() => { this.router.navigate(['/map']) }, 3000);
-                },
-                error => this.error = error
-        )
+    /**
+     * Logs the user in.
+     * If catches error, displays message for the user and resets the form.
+     * @returns {void}
+     * */
+    onSignin(): void {
+        this.authService.signinUser(this.signinForm.value)
+            .then(response => {
+                this.errorInfo = null;
+                this.successInfo = response.auth;
+                setTimeout(() => {
+                    this.router.navigate(['/map'])
+                }, 2000);
+            })
+            .catch(error => {
+                this.errorInfo = error;
+                this.signinForm.reset({email: this.signinForm.value.email});
+            })
     }
 
+    /**
+     * Clears error messages box.
+     * */
+    private clearErrorBox(): void {
+        this.errorInfo = null;
+    }
 }

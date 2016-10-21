@@ -15,7 +15,7 @@ export class NavbarComponent  {
     }
 
     onLogout() {
-        this.authService.signOut();
+        this.authService.signoutUser();
     }
 
 }
