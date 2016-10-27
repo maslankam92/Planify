@@ -17,10 +17,11 @@ export class SignupComponent implements OnInit {
     private tempSuccessInfo: any;
     private errorInfo: any;
 
-    constructor(private fb: FormBuilder,
-                private authService: AuthService,
-                private router: Router) {
-    }
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+        private router: Router
+    ) {}
 
     /**
      * Creates a signup form and watches whether

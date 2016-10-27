@@ -1,6 +1,5 @@
 import { Injectable} from "@angular/core";
-import { AngularFire, FirebaseAuthState, AuthMethods, AuthProviders } from "angularfire2";
-
+import {AngularFire, FirebaseAuthState, AuthMethods, AuthProviders, AngularFireAuth} from "angularfire2";
 import { UserLogin} from "./user-login.interface";
 
 @Injectable()
@@ -51,17 +50,22 @@ export class AuthService {
 
     /**
      * Checks if the user is authenticated or not at current time.
-     * @returns {boolean}
+     * @returns {AngularFireAuth} It has to be handled in caller component.
      * */
-    public isAuthenticated(): boolean {
-        let isAuthenticated = false;
-        this.af.auth.subscribe(response => {
-            if (response) {
-                isAuthenticated = true
-            } else {
-                isAuthenticated = false
-            }
-        });
-        return isAuthenticated;
+    public isAuthenticated(): AngularFireAuth {
+        return this.af.auth;
     }
+
+
+    public getUserId() {
+        let userId = '';
+        return this.af.auth.map(r => {
+            setTimeout(()=>userId = r.uid,2000);
+            console.log(userId);
+        }).toPromise().then(r=> r);
+        // return userId;
+    }
+
+
+
 }

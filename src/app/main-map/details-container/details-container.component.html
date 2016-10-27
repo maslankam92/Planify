@@ -1,14 +1,27 @@
 <div class="ui segment">
-    <div *ngIf="!isAuth()">
+
+    <h1>isAuthenticated: {{isAuthenticated}}</h1>
+    <h1>user id: {{userId}}</h1>
+
+    <div *ngIf="!isAuthenticated">
         <div class="ui violet message">To add trip, please log in.</div>
         <button routerLink="/signin" class="ui button">
             Login
         </button>
 
     </div>
-    <ul>
-        <li *ngFor="let item of items | async">
-            {{item.tripName}}
-        </li>
-    </ul>
+
+    <div *ngIf="isAuthenticated">
+        <input type="text" [(ngModel)]="tripName">
+        <button (click)="onAddTrip(tripName)" class="ui button violet">
+            Add trip
+        </button>
+
+        <ul>
+            <li *ngFor="let item of items" style="margin-bottom: 3px; border-bottom: 1px solid black">
+                trip: <strong>{{item.tripName}}</strong> <span style="float:right;">user ID : {{item.uid}}</span>
+            </li>
+        </ul>
+    </div>
+
 </div>

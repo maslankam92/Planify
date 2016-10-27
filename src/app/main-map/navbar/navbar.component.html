@@ -2,12 +2,12 @@ e<div class="main ui container">
     <sm-menu title="Angular2" class="inverted violet fixed">
         <a sm-item routerLink="/home" [icon]="'home'">Home</a>
 
-        <sm-menu class="menu right secondary icon padding" *ngIf="!isAuth()">
+        <sm-menu class="menu right secondary icon padding" *ngIf="!isAuthenticated">
             <a sm-item routerLink="/signin">Log in</a>
             <a sm-item routerLink="/signup">Sign up</a>
         </sm-menu>
 
-        <sm-menu class="menu right secondary icon" *ngIf="isAuth()">
+        <sm-menu class="menu right secondary icon" *ngIf="isAuthenticated">
             <a sm-item href="#/elements/menu"
                image="http://semantic-ui.com/images/avatar/small/stevie.jpg">Elliot Fu</a>
             <a sm-item (click)="onLogout()">Logout</a>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import { SafeStyle, DomSanitizationService } from '@angular/platform-browser';
+import { AngularFire } from "angularfire2";
+
 import { AuthService } from "../shared/auth.service";
-import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 
 @Component({
@@ -13,26 +14,25 @@ export class HomepageComponent implements OnInit {
 
     images: string[] = ['bg-1.jpg', 'bg-.jpg', 'bg-3.jpg', 'bg-4.jpg', 'bg-5.jpg', 'bg-6.jpg'];
     bg: string;
+    private isAuthenticated: boolean;
 
-    items: FirebaseListObservable <any[]>;
+    constructor(
+        private authService: AuthService,
+        private af: AngularFire
+    ) {}
 
-
-    constructor(private authService: AuthService, private af: AngularFire) {
-
-        this.items = af.database.list('trips');
-
-        console.log(af.database.list('trips'));
-        console.log(this.items);
-
+    ngOnInit(): any {
+        this.checkAuthentication();
     }
 
-    ngOnInit():any {
-        // this.bg = this.getBg();
-
-    }
-
-    isAuth() {
-        return this.authService.isAuthenticated();
+    private checkAuthentication(): void {
+        this.authService.isAuthenticated().subscribe(user => {
+            if (user) {
+                this.isAuthenticated = true;
+            } else {
+                this.isAuthenticated = false;
+            }
+        })
     }
 
     onLogout() {

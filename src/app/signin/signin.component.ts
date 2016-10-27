@@ -14,10 +14,11 @@ export class SigninComponent implements OnInit {
     successInfo: any;
     errorInfo: any;
 
-    constructor(private fb: FormBuilder,
-                private authService: AuthService,
-                private router: Router) {
-    }
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+        private router: Router
+    ) {}
 
     /**
      * Creates a signin form.

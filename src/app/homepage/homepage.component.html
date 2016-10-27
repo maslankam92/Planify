@@ -22,11 +22,11 @@
                 <a class="item">Work</a>
                 <a class="item">Company</a>
                 <a class="item">Careers</a>
-                <div class="right item" *ngIf="!isAuth()">
+                <div class="right item" *ngIf="!isAuthenticated">
                     <a routerLink="/signin" class="ui inverted button">Log in</a>
                     <a routerLink="/signup" class="ui inverted button">Sign Up</a>
                 </div>
-                <div class="right item" *ngIf="isAuth()">
+                <div class="right item" *ngIf="isAuthenticated">
                     <a class="ui inverted button" (click)="onLogout()">Logout</a>
                 </div>
             </div>

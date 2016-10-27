@@ -10,7 +10,7 @@ import { GoogleMapService } from "../../shared/google-map.service";
 })
 export class MapContainerComponent implements OnInit {
 
-    constructor(private googleMapService: GoogleMapService) { }
+    constructor(private googleMapService: GoogleMapService) {}
 
     ngOnInit() {
         this.googleMapService.initAutocomplete();
