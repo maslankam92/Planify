@@ -47,6 +47,16 @@ export class GoogleMapService {
                     console.log("Returned place contains no geometry");
                     return;
                 }
+
+                var tempPic = place.photos[0].getUrl({maxWidth: 640});
+                var picContainer = document.querySelector('#myPic img');
+                picContainer.setAttribute('src', tempPic);
+                picContainer.setAttribute('height', '300px');
+
+                console.log(tempPic, picContainer);
+                debugger;
+
+
                 var icon = {
                     url: place.icon,
                     size: new google.maps.Size(71, 71),
@@ -70,6 +80,7 @@ export class GoogleMapService {
                     bounds.extend(place.geometry.location);
                 }
             });
+
             map.fitBounds(bounds);
         });
     }
